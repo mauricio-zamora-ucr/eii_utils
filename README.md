@@ -3,7 +3,7 @@ Módulo utilitario de Python para entrada/salida en consola.
 
 ## Instalación
 ```bash
-pip install eii_utils
+pip install eii_utilitario
 ```
 
 ## Uso básico
