@@ -71,6 +71,12 @@ class TestInputs(unittest.TestCase):
         self.assertEqual(leer_entero_opcional("Edad", 20), 42)
         self.assertEqual(leer_flotante_opcional("Promedio", 2.0), 3.5)
 
+    @patch("builtins.input", side_effect=[""])
+    def test_leer_entero_opcional_muestra_valor_actual_en_prompt(self, mock_input):
+        valor = leer_entero_opcional("Edad", 78)
+        self.assertEqual(valor, 78)
+        mock_input.assert_called_once_with("Edad [78]: ")
+
     @patch("builtins.input", side_effect=["", "si", "tal vez", "no"])
     def test_leer_booleano_opcional(self, _mock_input):
         self.assertTrue(leer_booleano_opcional("Activo", True))

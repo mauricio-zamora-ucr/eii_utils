@@ -63,8 +63,9 @@ def leer_texto(etiqueta: str, es_obligatorio: bool = True, imprimir_echo: bool =
     Returns:
         El texto capturado.
     """
+    prompt = f"{etiqueta}: "
     while True:
-        valor = input(f"{etiqueta}: ").strip()
+        valor = input(prompt).strip()
         if es_obligatorio and not valor:
             imprimir_advertencia("El texto es obligatorio y no puede estar vacio.")
             continue
@@ -157,7 +158,7 @@ def leer_flotante_opcional(mensaje: str, valor_actual: float) -> float:
         Un flotante nuevo o el valor actual.
     """
     while True:
-        texto = leer_texto(mensaje, False, False).strip()
+        texto = leer_texto(f"{mensaje} [{valor_actual}]", False, False).strip()
         if texto == '':
             return valor_actual
         try:
@@ -177,7 +178,7 @@ def leer_entero_opcional(mensaje: str, valor_actual: int) -> int:
         Un entero nuevo o el valor actual.
     """
     while True:
-        texto = leer_texto(mensaje, False, False).strip()
+        texto = leer_texto(f"{mensaje} [{valor_actual}]", False, False).strip()
         if texto == '':
             return valor_actual
         try:
@@ -200,7 +201,7 @@ def leer_booleano_opcional(mensaje: str, valor_actual: bool) -> bool:
     valores_falsos = {"no", "n", "false", "0"}
 
     while True:
-        texto = leer_texto(mensaje, False, False).strip().lower()
+        texto = leer_texto(f"{mensaje} [{valor_actual}]", False, False).strip().lower()
         if texto == '':
             return valor_actual
         if texto in valores_verdaderos:
@@ -220,7 +221,7 @@ def leer_texto_opcional(mensaje: str, valor_actual: str) -> str:
     Returns:
         Un texto nuevo o el valor actual.
     """
-    texto = leer_texto(mensaje, False, False).strip()
+    texto = leer_texto(f"{mensaje} [{valor_actual}]", False, False).strip()
     return valor_actual if texto == '' else texto
 
 
